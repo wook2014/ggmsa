@@ -102,7 +102,7 @@ geom_msa <- function(data, font = "helvetical",
                                          labels = labs)
 
 
-    bg_data <- data
+    bg_data <- data[!duplicated(data[, c("position", "name")]), ]
 
     #work to ggtreeExtra
     if (is.null(mapping)) {
