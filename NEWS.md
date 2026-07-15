@@ -1,5 +1,6 @@
 # ggmsa 1.19.1
 
++ Fixed `facet_msa()` replacing `geom_polygon()` font-outline data with background tile data (2026-07-15, Wed)
 + `readAAMultipleAlignment` moved to the `MultipleAlignment` package in Bioc 3.24; updated tests to use `MultipleAlignment::readAAMultipleAlignment()` and added `MultipleAlignment` to Suggests (2026-06-09, Tue)
 + Fixed S3 generic/method consistency warning: all `ggplot_add.*` methods now include `...` in their signature to match the `ggplot_add` generic (2026-06-09, Tue)
 

@@ -60,10 +60,14 @@ ggplot_add.facet_msa <- function(object, plot, ...){
     field <- object$field
     facetData <- facet_data(msaData, field)
 
-    ##update data
-    plot$layers[[1]]$data <- facetData #ly_bg
-    if (length(plot$layers) > 1){
-        plot$layers[[2]]$data <- facetData #ly_label
+    ## Add facet information without replacing one layer's data with another.
+    ## In particular, the polygon layer contains one row per font-outline
+    ## vertex, whereas the background tile layer contains one row per residue.
+    for (i in seq_along(plot$layers)) {
+        layer_data <- plot$layers[[i]]$data
+        if (is.data.frame(layer_data) && "position" %in% names(layer_data)) {
+            plot$layers[[i]]$data <- facet_data(layer_data, field)
+        }
     }
 
     region <- diff(range(facetData$position))
